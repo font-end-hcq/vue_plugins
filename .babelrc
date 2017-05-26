@@ -2,12 +2,9 @@
   "presets": [
     ["es2015", { "modules": false }]
   ],
-
+  "plugins": [["component", [
+    {
+      "libraryName": "../es",
+    }
+  ]]]
 }
-
-
-/*"plugins": [["component", [
-  {
-    "libraryName": "../es",
-  }
-]]]*/

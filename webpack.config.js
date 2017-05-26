@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -9,10 +10,11 @@ module.exports = {
     // 'demo':'./demo/app.js',
   },
   output: {
-    // path: path.resolve(__dirname, './es/lib'),
-    path: path.resolve(__dirname, './lib'),
+    // path: path.resolve(__dirname, './lib'),
+    // path: path.resolve(__dirname, './lib/[name]'),
+    path: __dirname + '/lib',
     publicPath: '/es/',
-    filename: '[name].js',
+    filename: '[name]/index.js',
     library: 'index',
     libraryTarget: 'umd',
     umdNamedDefine: true,
@@ -32,7 +34,10 @@ module.exports = {
         loader: 'babel-loader'
       }, {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!postcss-loader!sass-loader'
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader!postcss-loader!sass-loader"
+        })
       }, {
         test: /\.png/,
         use: [
@@ -48,15 +53,22 @@ module.exports = {
     ]
   },
   plugins: [
-    // new webpack.optimize.UglifyJsPlugin({
-    //   sourceMap: true,
-    //   compress: {
-    //     warnings: false,
-    //     drop_console: true
-    //   },
-    //   beautify: false,
-    //   comments: false
-    // }),
+    // new ExtractTextPlugin("styles.css"),
+    new ExtractTextPlugin({
+      filename:  (getPath) => {
+        return getPath('[name]/style.css').replace('css/js', 'css');
+      },
+      allChunks: false
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        warnings: false,
+        drop_console: true
+      },
+      beautify: false,
+      comments: false
+    }),
     new webpack.DefinePlugin({
         MULTY:true,
     }),
