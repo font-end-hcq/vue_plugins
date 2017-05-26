@@ -65,7 +65,7 @@ body {
   }
 }
 
-.mm-course-list:last-child div {
+.mm-course-list:nth-last-of-type(1) div {
   border-bottom: 0;
 }
 @supports(font-size:1vw) {

@@ -17,7 +17,7 @@ export default {
       list: [{
         name: '首页',
         type: 'main',
-        to:'main',
+        to:'',
       },
       {
         name:"全部课程",

@@ -31,7 +31,7 @@
     "cleans": "rm -rf lib"
   },
   "name": "mm_vue_plugins",
-  "version": "1.0.9",
+  "version": "1.0.14",
   "main": "./lib",
   "repository": {
     "type": "git",
