@@ -1,4 +1,7 @@
 import Menu from './Menu.vue'
 import './menu.scss'
-const install = Vue => Vue.component('mm-main-menu', Menu)
+let install = Menu;
+if(MULTY){
+    install = Vue => Vue.component(Menu.name, Menu)
+}
 export default install

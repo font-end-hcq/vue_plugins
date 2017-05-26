@@ -1,6 +1,8 @@
 import List from './List.vue'
 import './list.scss'
 
-const install = Vue => Vue.component('mm-course-list', List)
-
-export default install;
+let install = List;
+if(MULTY){
+    install = Vue => Vue.component(List.name, List)
+}
+export default install

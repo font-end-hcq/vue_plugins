@@ -13,7 +13,7 @@ module.exports = {
     },
     resolve: {
         alias: {
-            'vue$': 'vue/dist/vue.common.js'
+            'vue$': 'vue/dist/vue.esm.js'
         }
     },
     module: {
@@ -36,14 +36,14 @@ module.exports = {
             }
         }),
         new HtmlWebpackPlugin({template: './index.html'}),
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true,
-            compress: {
-                warnings: false,
-                drop_console: true
-            },
-            beautify:false,
-            comments:false
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     sourceMap: true,
+        //     compress: {
+        //         warnings: false,
+        //         drop_console: true
+        //     },
+        //     beautify:false,
+        //     comments:false
+        // }),
     ]
 }

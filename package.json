@@ -27,11 +27,12 @@
   "scripts": {
     "build": "webpack --watch&webpack --config webpack.index.js --watch",
     "demo": "yarn build&webpack-dev-server --config webpack.demo.js --open",
-    "forbower":"rm -rf es&&cp -r src es"
+    "forbower": "yarn cleans&&cp -r src lib",
+    "cleans": "rm -rf lib"
   },
   "name": "mm_vue_plugins",
-  "version": "1.0.0",
-  "main": "./es",
+  "version": "1.0.9",
+  "main": "./lib",
   "repository": {
     "type": "git",
     "url": "git@git-server.chinaeast.cloudapp.chinacloudapi.cn:xueyuan/mm_vue_plugins.git"

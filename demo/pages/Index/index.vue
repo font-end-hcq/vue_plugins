@@ -2,6 +2,8 @@
 <div>
   <mm-main-menu></mm-main-menu>
     <mm-course-list :message='message'></mm-course-list>
+    <mm-course-list :message='message'></mm-course-list>
+
     <mm-bottom-menu></mm-bottom-menu>
 </div>
 </template>
@@ -15,6 +17,7 @@ export default {
           theme:'营销影响',
           learned:100,
           rate:10.0,
+          img:'',
         }
     }
   }

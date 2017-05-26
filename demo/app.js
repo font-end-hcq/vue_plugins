@@ -5,13 +5,13 @@ Vue.use(VueRouter)
 
 import Index from './pages/Index'
 
-import {MainMenu,CourseLists,BottomMenu} from '../es'
-Vue.use(CourseLists)
-Vue.use(MainMenu)
-Vue.use(BottomMenu)
+// import {MainMenu,CourseLists,BottomMenu} from '../es'
+// Vue.use(CourseLists)
+// Vue.use(MainMenu)
+// Vue.use(BottomMenu)
 
-import index from '../es/index'
-// Vue.use(index)
+import index from '../lib/index'
+Vue.use(index)
 console.log(index)
 
 

@@ -6,10 +6,11 @@ module.exports = {
     'bottom-menu':'./src/bottonMenu/index.js',
     'main-menu':'./src/menu/index.js',
     'course-lists':'./src/list/index.js',
-    'demo':'./demo/app.js',
+    // 'demo':'./demo/app.js',
   },
   output: {
-    path: path.resolve(__dirname, './es/lib'),
+    // path: path.resolve(__dirname, './es/lib'),
+    path: path.resolve(__dirname, './lib'),
     publicPath: '/es/',
     filename: '[name].js',
     library: 'index',
@@ -18,7 +19,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.common.js'
+      'vue$': 'vue/dist/vue.esm.js'
     }
   },
   module: {
@@ -47,13 +48,17 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false,
-        drop_console: true
-      },
-      beautify: false,
-      comments: false
-    })]
+    // new webpack.optimize.UglifyJsPlugin({
+    //   sourceMap: true,
+    //   compress: {
+    //     warnings: false,
+    //     drop_console: true
+    //   },
+    //   beautify: false,
+    //   comments: false
+    // }),
+    new webpack.DefinePlugin({
+        MULTY:true,
+    }),
+  ]
 }

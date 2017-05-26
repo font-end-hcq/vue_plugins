@@ -3,17 +3,9 @@ import CourseLists from './list'
 import BottomMenu from './bottonMenu'
 
 const install = Vue => {
-  Vue.component('mm-main-menu', MainMenu);
-  Vue.component('mm-course-list', CourseLists);
-  Vue.component('mm-bottom-menu', BottomMenu);
+  Vue.component(MainMenu.name, MainMenu);
+  Vue.component(CourseLists.name, CourseLists);
+  Vue.component(BottomMenu.name, BottomMenu);
 }
 
 export default install
-
-
-
-// export {
-//     MainMenu,
-//     CourseLists,
-//     BottomMenu,
-// }

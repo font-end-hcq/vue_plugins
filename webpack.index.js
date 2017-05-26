@@ -6,8 +6,8 @@ module.exports = {
     main: './src/index.js'
   },
   output: {
-    path: path.resolve(__dirname, './es'),
-    publicPath: '/es/',
+    path: path.resolve(__dirname, './lib'),
+    // publicPath: '/es/',
     filename: 'index.js',
     library: 'index',
     libraryTarget: 'umd',
@@ -15,7 +15,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.common.js'
+      'vue$': 'vue/dist/vue.esm.js'
     }
   },
   module: {
@@ -52,5 +52,9 @@ module.exports = {
       },
       beautify: false,
       comments: false
-    })]
+    }),
+    new webpack.DefinePlugin({
+        MULTY:false,
+    }),
+  ]
 }
