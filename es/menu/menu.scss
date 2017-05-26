@@ -1,0 +1,29 @@
+#mm-main-menu {
+  display: flex;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  padding: 12px 0;
+
+  dd {
+    -webkit-margin-start: 0;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
+
+    span {
+      font-size: 12px;
+      color: #36363c;
+      padding-top: 10px;
+    }
+  }
+}
