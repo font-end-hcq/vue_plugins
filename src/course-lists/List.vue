@@ -1,15 +1,16 @@
 <template>
 <section class='mm-course-list' v-if='message'>
   <div>
-    <img :src="message.img" alt="">
+    <img :src="message.cover_240x140" alt="">
     <dl>
       <dt style='WebkitBoxOrient:vertical' v-if='message.title'>{{message.title}}</dt>
       <dd>
-        <span v-if='message.theme'>{{message.theme}} | {{message.learned}}人已学习</span>
-        <span v-if='message.rate'>
+        <span v-if='message.category'>{{message.category}} | {{message.buy_count}}人已学习</span>
+        <span v-if='message.score'>
         评分
-        <em>{{message.rate.toFixed(1)}}</em>
-      </span>
+          <em>{{message.score.toFixed(1)}}</em>
+        </span>
+        <span v-else>评分暂无</span>
       </dd>
     </dl>
   </div>

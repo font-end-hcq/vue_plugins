@@ -1,25 +1,32 @@
-var path = require('path');
-var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+const path = require('path');
+const webpack = require('webpack');
+// import webpack from 'webpack'
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const fs = require('fs');
+const vuxLoader = require('vux-loader');
+var os = require('os')
+var HappyPack = require('happypack');
+var happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
-module.exports = {
-  entry: {
-    'bottom-menu':'./src/bottonMenu/index.js',
-    'main-menu':'./src/menu/index.js',
-    'course-lists':'./src/list/index.js',
-    // 'demo':'./demo/app.js',
-  },
+const entry = {};
+fs.readdirSync(__dirname + '/src').filter(file=> {
+  if (!file.includes('.')) {
+    entry[file] = `./src/${file}`;
+  }
+})
+entry['/'] = `./src`;
+
+const mymodule = {
+  entry,
   output: {
-    // path: path.resolve(__dirname, './lib'),
-    // path: path.resolve(__dirname, './lib/[name]'),
     path: __dirname + '/lib',
-    publicPath: '/es/',
     filename: '[name]/index.js',
     library: 'index',
     libraryTarget: 'umd',
-    umdNamedDefine: true,
+    umdNamedDefine: true
   },
   resolve: {
+    extensions:[".js",".vue"],
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     }
@@ -31,13 +38,11 @@ module.exports = {
         loader: 'vue-loader'
       }, {
         test: /\.js$/,
-        loader: 'babel-loader'
+        // loader: 'babel-loader'
+        loader: 'happypack/loader?id=happybabel'
       }, {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader!postcss-loader!sass-loader"
-        })
+        use: ExtractTextPlugin.extract({fallback: "style-loader", use: "css-loader!postcss-loader!sass-loader"})
       }, {
         test: /\.png/,
         use: [
@@ -52,25 +57,38 @@ module.exports = {
       }
     ]
   },
+  // devtool: 'hidden-source-map',
   plugins: [
-    // new ExtractTextPlugin("styles.css"),
+    new HappyPack({
+     id: 'happybabel',
+     loaders: ['babel-loader'],
+     threadPool: happyThreadPool,
+     cache: true,
+     verbose: true
+   }),
     new ExtractTextPlugin({
-      filename:  (getPath) => {
-        return getPath('[name]/style.css').replace('css/js', 'css');
-      },
+      filename: getPath => getPath('[name]/style.css'),
       allChunks: false
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false,
-        drop_console: true
-      },
-      beautify: false,
-      comments: false
-    }),
+    new webpack.DefinePlugin({MULTY: true}),
     new webpack.DefinePlugin({
-        MULTY:true,
+        'process.env': {
+            NODE_ENV: '"development"'
+        }
     }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //     sourceMap: true,
+    //     compress: {
+    //         warnings: false,
+    //         drop_console: true
+    //     },
+    //     beautify:false,
+    //     comments:false
+    // }),
   ]
 }
+
+
+module.exports = vuxLoader.merge(mymodule, {
+  plugins: ['vux-ui']
+})

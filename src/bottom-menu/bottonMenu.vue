@@ -1,10 +1,11 @@
 <template>
 <dl id='my_bottom_menu' :style='{backgroundColor:background}' >
-  <!-- <dd v-for='(item,index) in list' :class='type===item.type?"on":""'>-->
-  <dd v-for='(item,index) in list' :class='{on:(type===item.type||+type===index+1),on:$route.path === `/${item.to}`}' @click='toOther(item.to,type===item.type||+type===index+1)'>
+  <dd v-for='(item,index) in list' :class='{on:$route.path===`${item.to}`||(item.to!==`/`&&$route.path.includes(item.to))}'
+  @click='toOther(item.to,type===item.type||+type===index+1)'>
     <i :class='item.type'></i>
     <span>{{item.name}}</span>
   </dd>
+
 </dl>
 </template>
 
@@ -17,7 +18,7 @@ export default {
       list: [{
         name: '首页',
         type: 'main',
-        to:'',
+        to:'/',
       },
       {
         name:"全部课程",

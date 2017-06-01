@@ -1,6 +1,24 @@
 $color_title: #333;
+$border: 1px solid #ddd;
 @function pxToVw($px) {
    @return $px/750*100*2vw;
+}
+@mixin border_s($top:0, $right:0, $bottom:0, $left:0) {
+  position: relative;
+
+  &:before {
+    content: '' !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: $border;
+    border-width: $top $right $bottom $left;
+    width: 200%;
+    height: 200%;
+    transform: scale(.5);
+    box-sizing: border-box;
+    transform-origin: 0 0;
+  }
 }
 
 body {
@@ -16,13 +34,14 @@ body {
     margin-left: 15px;
     padding-bottom: 10px;
     padding-right: 15px;
-    border-bottom: 1px solid #ccc;
+    @include border_s($bottom:1px);
   }
 
   img {
-    flex: 1 0 120px;
+    flex: 0 0 120px;
+    width: 120px;
     height: 70px;
-    background-color: #ccc;
+    background-color: #ddd;
   }
 
   dl {
@@ -33,6 +52,7 @@ body {
     justify-content: space-between;
     padding-left: 10px;
     line-height: normal;
+    flex: 1;
 
     dt {
       color: $color_title;
@@ -41,7 +61,6 @@ body {
       display: -webkit-box;
       -webkit-line-clamp: 2;
       text-overflow: ellipsis;
-      // -webkit-box-orient: vertical;
     }
 
     dd {
@@ -65,7 +84,7 @@ body {
   }
 }
 
-.mm-course-list:nth-last-of-type(1) div {
+.mm-course-list:nth-last-of-type(1) div:before {
   border-bottom: 0;
 }
 @supports(font-size:1vw) {
@@ -80,6 +99,7 @@ body {
 
     img {
       flex-basis: pxToVw(120);
+      width: pxToVw(120);
       height: pxToVw(70);
     }
 

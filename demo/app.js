@@ -10,9 +10,10 @@ import Index from './pages/Index'
 // Vue.use(MainMenu)
 // Vue.use(BottomMenu)
 
-import index from '../lib/index'
+// import index,{MainMenu,CourseLists,BottomMenu,CourseTab} from '..'
+import index from '..';
+
 Vue.use(index)
-console.log(index)
 
 
 

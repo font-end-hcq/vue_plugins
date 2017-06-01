@@ -4,8 +4,8 @@ import './bottonMenu.scss'
 
 // export default bottonMenu
 
-let install = bottonMenu;
+// let install = bottonMenu;
 if(MULTY){
-    install = Vue => Vue.component(bottonMenu.name, bottonMenu)
+    bottonMenu.install = Vue => Vue.component(bottonMenu.name, bottonMenu)
 }
-export default install
+export default bottonMenu

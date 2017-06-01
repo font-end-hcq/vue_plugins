@@ -1,0 +1,42 @@
+@function pxToVw($px) {
+   @return $px/750*100*2vw;
+}
+
+.mm-top-back {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  padding-left: 15px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+
+  svg {
+    margin-right: 5px;
+    width: 12px;
+    height: 18px;
+  }
+
+  a {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 20%;
+  }
+}
+@supports(font-size:1vw) {
+  .mm-top-back {
+    height: pxToVw(40);
+    font-size: pxToVw(12);
+    padding-left: pxToVw(15);
+
+    svg {
+      margin-right: pxToVw(5);
+      width: pxToVw(12);
+      height: pxToVw(18);
+    }
+  }
+}

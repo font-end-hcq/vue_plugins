@@ -24,10 +24,14 @@ module.exports = {
             test: /\.js$/,
             loader: 'babel-loader',
         },{
-            test: /\.scss$/,
+            test: /\.(css|scss)$/,
             loader: 'style-loader!css-loader!postcss-loader!sass-loader',
         }]
     },
+    // externals: {
+    //   vue: 'Vue',
+    //   'vue-router':'VueRouter'
+    // },
     // devtool:'hidden-source-map',
     plugins: [
         new webpack.DefinePlugin({
