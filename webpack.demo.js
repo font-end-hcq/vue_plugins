@@ -33,6 +33,7 @@ module.exports = {
     //   'vue-router':'VueRouter'
     // },
     // devtool:'hidden-source-map',
+    watch:true,
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {

@@ -1,6 +1,9 @@
 ## 按需加载
 > 依赖 `babel-plugin-component`
 
+
+## 学习项目,不建议应用于生产环境
+
 `.babelrc`
 ```
 "plugins": [["component", [
@@ -13,13 +16,41 @@
 > 使用
 
 ```
-import {CourseLists,MainMenu,BottomMenu,CourseTab} from 'mm_vue_plugins'
-Vue.use(CourseTab);//mm-course-list
+import {CourseLists,MainMenu,BottomMenu,CourseTab,SaveDialog,CourseSimpleTab,RateStar} from 'mm_vue_plugins'
+Vue.use(SaveDialog);//mm-save-dialog
+Vue.use(CourseTab);//mm-course-tab
+Vue.use(CourseSimpleTab);//mm-course-simple-tab
 Vue.use(CourseLists);//mm-course-list
 Vue.use(MainMenu);//mm-main-menu
 Vue.use(BottomMenu);//mm-bottom-menu
 Vue.use(TopBack);//mm-top-back
+Vue.use(RateStar);//mm-rate-star
 ```
+### `mm-rate-star`
+> 0.4.0 add
+
+```
+<mm-rate-star starts='5' >project-name</mm-rate-star>
+<mm-rate-star result='3'>项目名称</mm-rate-star>
+```
+- starts 打分中用,默认为5个星星
+- result 显示分数
+### `mm-course-simple-tab`
+> 0.3.0 add
+
+```
+  <mm-course-simple-tab  pageCounts='10'/>
+```
+
+### `mm-save-dialog`
+> 0.2.0 add
+
+```
+  <mm-save-dialog :time='time' v-on:result='result'/>
+```
+- time 倒计时时间,不写为3
+- result 倒计时结束回调
+
 ### `mm-top-back`
 > 0.1.0 add
 
@@ -29,13 +60,11 @@ Vue.use(TopBack);//mm-top-back
 - color 文字颜色
 - backcolor 返回箭头颜色,无则取color
 - bgcolor 背景颜色
-
+### `mm-bottom-menu`
+```
+<mm-bottom-menu type='2'/>
+```
 ### `mm-course-tab`
-```
-import {CourseTab} from 'mm-vue-plugins'
-Vue.use(CourseTab)
-```
-
 `<mm-course-tab :courses='courses'></mm-course-tab>`
 ```
 courses:[{

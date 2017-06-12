@@ -9,25 +9,10 @@ $color_gray: #333;
   background-color: #fff;
   width: 100%;
   height: 100%;
-  // > div::-webkit-scrollbar {
-  //   width: 0;
-  //   height: 0;
-  // }
-  // >div::
-  ::-webkit-scrollbar {
-    display: none;
-    // width: 13px;
-    // height: 13px;
-  }
-  // ::-webkit-scrollbar-track {
-  //   width: 0;
-  // }
-  //
-  // ::-webkit-scrollbar-thumb {
-  //   width: 0;
-  // }
-  > div {
-    // -webkit-overflow-scrolling: touch;
+
+  > div::-webkit-scrollbar {
+    width: 0;
+    height: 0;
   }
 
   .vux-tab-ink-bar {

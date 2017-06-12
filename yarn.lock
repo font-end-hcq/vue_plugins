@@ -2997,6 +2997,10 @@ object-keys@^1.0.10, object-keys@^1.0.8:
   version "1.0.11"
   resolved "https://registry.npmjs.org/object-keys/-/object-keys-1.0.11.tgz#c54601778ad560f1142ce0e01bcca8b56d13426d"
 
+object-serialize@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/object-serialize/-/object-serialize-1.0.4.tgz#04e4054264630ae383f21cfdff2b613cb6295059"
+
 object.assign@^4.0.1:
   version "4.0.4"
   resolved "https://registry.npmjs.org/object.assign/-/object.assign-4.0.4.tgz#b1c9cc044ef1b9fe63606fc141abbb32e14730cc"
@@ -4613,6 +4617,10 @@ websocket-extensions@>=0.1.1:
 weixin-js-sdk@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/weixin-js-sdk/-/weixin-js-sdk-1.2.0.tgz#5132949eb65b3d4e5f3e052bd3b6b10abdf47d55"
+
+whatwg-fetch@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.npmjs.org/whatwg-fetch/-/whatwg-fetch-2.0.3.tgz#9c84ec2dcf68187ff00bc64e1274b442176e1c84"
 
 whet.extend@~0.9.9:
   version "0.9.9"

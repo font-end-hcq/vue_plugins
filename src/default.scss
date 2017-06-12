@@ -1,0 +1,22 @@
+$color_gray: #333;
+$border: 1px solid #ddd;
+@function pxToVw($px) {
+   @return $px/750*100*2vw;
+}
+@mixin border_s($top:0, $right:0, $bottom:0, $left:0) {
+  position: relative;
+
+  &:before {
+    content: '' !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: $border;
+    border-width: $top $right $bottom $left;
+    width: 200%;
+    height: 200%;
+    transform: scale(.5);
+    box-sizing: border-box;
+    transform-origin: 0 0;
+  }
+}

@@ -23,20 +23,23 @@
     "html-webpack-plugin": "^2.28.0",
     "less-loader": "^4.0.3",
     "node-sass": "^4.5.3",
+    "object-serialize": "^1.0.4",
     "postcss-loader": "^2.0.5",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.1",
     "url-loader": "^0.5.8",
     "vue-template-compiler": "^2.3.3",
-    "vux-loader": "^1.0.63"
+    "vux-loader": "^1.0.63",
+    "whatwg-fetch": "^2.0.3"
   },
   "scripts": {
     "demo": "webpack --watch&webpack-dev-server --config webpack.demo.js --open",
+    "tiaoshi": "webpack --watch&webpack --config webpack.demo.js --watch",
     "forbower": "yarn cleans&&cp -r src lib",
     "cleans": "rm -rf lib"
   },
   "name": "mm-vue-plugins",
-  "version": "0.1.0",
+  "version": "0.4.4",
   "main": "./lib",
   "repository": {
     "type": "git",

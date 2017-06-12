@@ -10,11 +10,13 @@ import Index from './pages/Index'
 // Vue.use(MainMenu)
 // Vue.use(BottomMenu)
 
-// import index,{MainMenu,CourseLists,BottomMenu,CourseTab} from '..'
-import index from '..';
+import {MainMenu,CourseLists,BottomMenu,CourseTab,SaveDialog,CourseSimpleTab,RateStar} from '..'
+// import index from '..';
 
-Vue.use(index)
-
+// Vue.use(CourseSimpleTab)
+// Vue.use(CourseLists)
+Vue.use(CourseTab)
+// Vue.use(RateStar)
 
 
 const routes = [
