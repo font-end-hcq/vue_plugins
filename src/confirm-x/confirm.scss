@@ -1,0 +1,68 @@
+@import '../default.scss';
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.mm-confirm-x {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.7);
+    // opacity: 0;
+    // &.on {
+    //     animation: show 1s;
+    //     animation-fill-mode: forwards;
+    // }
+    // @keyframes show {
+    //     0% {
+    //         opacity: 0;
+    //     }
+    //
+    //     100% {
+    //         opacity: 1;
+    //     }
+    // }
+    dl {
+        background-color: #fff;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 37px;
+        border-radius: 10px;
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 0;
+        margin-top: 35%;
+        color: #282828;
+        text-align: center;
+
+        dt {
+            padding: 40px 20px;
+            width: 100%;
+            @include border_s($bottom:1px);
+            font-size: 18px;
+        }
+
+        dd {
+            height: 50px;
+            -webkit-margin-start: 0;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        dd:first-of-type {
+            @include border_s($right:1px);
+        }
+    }
+}

@@ -1,6 +1,9 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var HappyPack = require('happypack');
+var os = require('os')
+var happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 module.exports = {
     entry: {
@@ -8,7 +11,6 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, './demo/dist'),
-        // publicPath: '/dist/',
         filename: 'index.js',
     },
     resolve: {
@@ -22,7 +24,8 @@ module.exports = {
             loader: 'vue-loader'
         }, {
             test: /\.js$/,
-            loader: 'babel-loader',
+            // loader: 'babel-loader',
+            loader: 'happypack/loader?id=happybabel'
         },{
             test: /\.(css|scss)$/,
             loader: 'style-loader!css-loader!postcss-loader!sass-loader',
@@ -35,6 +38,13 @@ module.exports = {
     // devtool:'hidden-source-map',
     watch:true,
     plugins: [
+      new HappyPack({
+       id: 'happybabel',
+       loaders: ['babel-loader'],
+       threadPool: happyThreadPool,
+       cache: true,
+       verbose: true
+     }),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: '"development"'

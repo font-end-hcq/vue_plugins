@@ -8,10 +8,10 @@
   <swiper v-model="index" :show-dots="false" id='my-swiper'>
     <swiper-item v-for="(item, index) in swiperList" :key="index">
       <div class="tab-swiper vux-center">
-        <mm-course-list v-if='item.message' v-for='it in item.message' :message='it' />
+        <mm-course-list v-if='item.message' v-for='it in item.message' :message='it' :key='it'/>
         <load-more v-if='!item.message'></load-more>
         <div v-else-if='!item.count' class='nomessage'>
-          <img src="//xbinstitute.oss-cn-hangzhou.aliyuncs.com/shield/mobile/plugin-pic/none.png" alt="">
+          <img src="//xbinstitute.oss-cn-hangzhou.aliyuncs.com/shield/image/plugin-pic/none.png" alt="">
           <span>这里什么都没有，去别的地方看看吧~</span>
         </div>
       </div>

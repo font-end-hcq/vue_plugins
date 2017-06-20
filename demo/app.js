@@ -10,12 +10,11 @@ import Index from './pages/Index'
 // Vue.use(MainMenu)
 // Vue.use(BottomMenu)
 
-import {MainMenu,CourseLists,BottomMenu,CourseTab,SaveDialog,CourseSimpleTab,RateStar} from '..'
+import {MainMenu,CourseLists,BottomMenu,CourseTab,SaveDialog,CourseSimpleTab,RateStar,ConfirmX} from '..'
 // import index from '..';
 
-// Vue.use(CourseSimpleTab)
-// Vue.use(CourseLists)
-Vue.use(CourseTab)
+Vue.use(ConfirmX)
+// Vue.use(CourseTab)
 // Vue.use(RateStar)
 
 

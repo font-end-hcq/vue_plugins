@@ -16,7 +16,7 @@
 > 使用
 
 ```
-import {CourseLists,MainMenu,BottomMenu,CourseTab,SaveDialog,CourseSimpleTab,RateStar} from 'mm_vue_plugins'
+import {CourseLists,MainMenu,BottomMenu,CourseTab,SaveDialog,CourseSimpleTab,RateStar,ConfirmX} from 'mm_vue_plugins'
 Vue.use(SaveDialog);//mm-save-dialog
 Vue.use(CourseTab);//mm-course-tab
 Vue.use(CourseSimpleTab);//mm-course-simple-tab
@@ -25,6 +25,23 @@ Vue.use(MainMenu);//mm-main-menu
 Vue.use(BottomMenu);//mm-bottom-menu
 Vue.use(TopBack);//mm-top-back
 Vue.use(RateStar);//mm-rate-star
+Vue.use(ConfirmX);//mm-confirm-x
+```
+### `mm-confirm-x`
+> 0.5.0 add
+
+```
+<mm-confirm-x v-on:next='test' v-on:close='test'
+:message='confirm.message'
+:closeText='"放弃支付"'
+:nextText='"重新支付"'
+:show='confirm.show'
+/>
+---
+#### test
+this.confirm = Object.assign({},this.confirm,{
+  show:false
+})
 ```
 ### `mm-rate-star`
 > 0.4.0 add

@@ -7,8 +7,7 @@ import CourseSimpleTab from './course-simple-tab'
 import TopBack from './top-back'
 import SaveDialog from './save-dialog'
 import RateStar from './rate-star'
-
-
+import Confirm from './confirm-x'
 
 const install = Vue => {
   Vue.component(MainMenu.name, MainMenu);
@@ -19,6 +18,7 @@ const install = Vue => {
   Vue.component(SaveDialog.name, SaveDialog);
   Vue.component(CourseSimpleTab.name, CourseSimpleTab);
   Vue.component(RateStar.name, RateStar);
+  Vue.component(Confirm.name, Confirm);
 }
 
 export default install

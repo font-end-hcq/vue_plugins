@@ -38,7 +38,6 @@ const mymodule = {
         loader: 'vue-loader'
       }, {
         test: /\.js$/,
-        // loader: 'babel-loader'
         loader: 'happypack/loader?id=happybabel'
       }, {
         test: /\.scss$/,
@@ -58,6 +57,7 @@ const mymodule = {
     ]
   },
   // devtool: 'hidden-source-map',
+  watch:true,
   plugins: [
     new HappyPack({
      id: 'happybabel',
