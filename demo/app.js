@@ -15,7 +15,7 @@ import {MainMenu,CourseLists,BottomMenu,CourseTab,SaveDialog,CourseSimpleTab,Rat
 
 Vue.use(ConfirmX)
 // Vue.use(CourseTab)
-// Vue.use(RateStar)
+Vue.use(CourseTab)
 
 
 const routes = [

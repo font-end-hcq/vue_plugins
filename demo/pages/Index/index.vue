@@ -1,10 +1,10 @@
 <template lang="html">
-<div>123
+<div>
     <!-- <mm-top-back color='#fff' backcolor='blue' bgcolor='red'>首页</mm-top-back> -->
 
     <!-- <mm-main-menu></mm-main-menu> -->
       <!-- <mm-course-simple-tab  pageCounts='10'/> -->
-      <!-- <mm-course-tab :tags='tag'  pageCounts='10'/> -->
+    <mm-course-tab :tags='tag'  pageCounts='3' requestHead='http://localhost:6060'/>
 
     <!-- <mm-course-list :message='message'></mm-course-list> -->
     <!-- <mm-course-list :message='message'></mm-course-list> -->
@@ -13,13 +13,13 @@
     <!-- <a href="javascript:;" @click='rr'>111</a> -->
     <!-- <mm-rate-star starts='5' >课程评分</mm-rate-star> -->
     <!-- <mm-rate-star result='3'>课程评分</mm-rate-star> -->
-    <mm-confirm-x v-on:next='aa' v-on:close='aa'
+    <!-- <mm-confirm-x v-on:next='aa' v-on:close='aa'
     :message='confirm.message'
     :closeText='"放弃支付"'
     :nextText='"重新支付"'
     :show='confirm.show'
     ></mm-confirm-x>
-    <button type="button" name="button" @click='rr'>111</button>
+    <button type="button" name="button" @click='rr'>111</button> -->
 </div>
 </template>
 

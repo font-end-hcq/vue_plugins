@@ -1,8 +1,7 @@
 <template>
-<section class='mm-course-list' v-if='message'>
+<section class='mm-course-list' v-if='message' @click='toNext'>
   <div>
     <img :src="message.cover_240x140" onerror="javascript:this.src='https://cdn.xueyuan.xiaobao100.com/shield/image/plugin-pic/default.png';" >
-    <!-- <img src="./default.png" alt=""> -->
     <dl>
       <dt style='WebkitBoxOrient:vertical' v-if='message.title'>{{message.title}}</dt>
       <dd>
@@ -16,7 +15,6 @@
             <label class='pingjia' v-if='!pingjia.done'>评价</label>
             <span v-else>已评价</span>
         </object>
-
       </dd>
     </dl>
   </div>
@@ -27,7 +25,7 @@
 
 export default {
   name: 'mm-course-list',
-  props: ['message'],
+  props: ['message','to'],
   data(){
     return{
         pingjia:false,
@@ -42,6 +40,11 @@ export default {
   methods:{
     next(){
       location.hash=this.message.next;
+    },
+    toNext(){
+      if(this.to){
+        location.pathname = this.to;
+      }
     }
   }
 }
