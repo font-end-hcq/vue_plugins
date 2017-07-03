@@ -56,7 +56,6 @@ const mymodule = {
       }
     ]
   },
-  // devtool: 'hidden-source-map',
   watch:true,
   plugins: [
     new HappyPack({
@@ -76,15 +75,6 @@ const mymodule = {
             NODE_ENV: '"development"'
         }
     }),
-    // new webpack.optimize.UglifyJsPlugin({
-    //     sourceMap: true,
-    //     compress: {
-    //         warnings: false,
-    //         drop_console: true
-    //     },
-    //     beautify:false,
-    //     comments:false
-    // }),
   ]
 }
 

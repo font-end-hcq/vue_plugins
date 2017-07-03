@@ -100,6 +100,10 @@ body {
 .mm-course-list:nth-last-of-type(1) div:before {
     border-bottom: 0;
 }
+
+.mm-course-list:nth-last-of-type(1) {
+    @include border_s($bottom:1px);
+}
 @supports(font-size:1vw) {
     .mm-course-list {
         padding-top: pxToVw(10);

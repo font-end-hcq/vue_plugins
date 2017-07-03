@@ -5,7 +5,7 @@
     <dl>
       <dt style='WebkitBoxOrient:vertical' v-if='message.title'>{{message.title}}</dt>
       <dd>
-        <span v-if='message.category'>{{message.category}} | {{message.buy_count}}人已{{pingjia?"学习":"报名"}}</span>
+        <span v-if='message.category'>{{message.category}} | {{message.buy_count||0}}人已{{pingjia?"学习":"报名"}}</span>
         <object v-if='!pingjia'>
           <span v-if='message.score'>
           评分 {{message.score.toFixed(1)}}
@@ -29,7 +29,6 @@ export default {
   data(){
     return{
         pingjia:false,
-
     }
   },
   created(){
@@ -43,7 +42,7 @@ export default {
     },
     toNext(){
       if(this.to){
-        location.pathname = this.to;
+        location.href =`${location.origin}/${this.to}`;
       }
     }
   }

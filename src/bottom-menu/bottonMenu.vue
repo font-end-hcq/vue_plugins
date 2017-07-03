@@ -1,14 +1,18 @@
 <template>
 <dl id='my_bottom_menu' :style='{backgroundColor:background}' >
-  <!-- <dd v-if='!type' v-for='(item,index) in list' :class='{on:$route.path===`${item.to}`||(item.to!==`/`&&$route.path.includes(item.to))}'
-  @click='toOther(item.to,type===item.type||+type===index+1)'>
-    <i :class='item.type'></i>
-    <span>{{item.name}}</span>
-  </dd> -->
-
   <dd v-for='(item,index) in list' :class='{on:+type===index+1}'
   @click='toOther(item.to,+type===index+1)'>
-    <i :class='item.type'></i>
+    <!-- <i :class='item.type'></i> -->
+    <object v-if='+type===index+1'>
+        <home-on v-if='item.type === "main"'/>
+        <course-on v-if='item.type === "course"'/>
+        <me-on v-if='item.type === "me"'/>
+    </object>
+    <object v-else>
+        <home v-if='item.type === "main"'/>
+        <course v-if='item.type === "course"'/>
+        <me v-if='item.type === "me"'/>
+    </object>
     <span>{{item.name}}</span>
   </dd>
 </dl>
@@ -16,8 +20,25 @@
 
 <script>
 
+import Home from './svg/home.vue'
+import HomeOn from './svg/home_on.vue'
+
+import Course from './svg/course.vue'
+import CourseOn from './svg/course_on.vue'
+
+import Me from './svg/me.vue'
+import MeOn from './svg/me_on.vue'
+
 export default {
   name: 'mm-bottom-menu',
+  components:{
+      Home,
+      HomeOn,
+      Course,
+      CourseOn,
+      Me,
+      MeOn
+  },
   props: ['background',"type"],
   data() {
     return {

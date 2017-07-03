@@ -1,7 +1,7 @@
 <template>
 <section class='mm-course-tab'>
     <div style="width: 100%;overflow:scroll;-webkit-overflow-scrolling:touch;">
-        <tab defaultColor='#333' activeColor='#333' :style="{width:width}" :line-width=2 active-color='#fc378c' v-model="index">
+        <tab defaultColor='#666' activeColor='#dc2832' :style="{width}" :line-width=2 active-color='#fc378c' v-model="index">
             <tab-item :disabled='!item' class="vux-center" :selected="selected === item" v-for="(item, index) in course" :key="index">{{item.name}}</tab-item>
         </tab>
     </div>
@@ -17,7 +17,7 @@
             </div>
         </swiper-item>
     </swiper>
-    <em class='ifshowall' @click='showallType=!showallType'></em>
+    <em class='ifshowall' @click='showallType=!showallType'><i  :class='{on:showallType}'></i></em>
     <div class="all" v-if='showallType'>全部分类</div>
     <div class="alllist" :class='{showallType:showallType}'>
         <dl>

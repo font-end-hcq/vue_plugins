@@ -8,7 +8,7 @@
     "vux": "^2.4.0",
     "vux-loader": "^1.0.68",
     "webpack": "2.6.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^2.5.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.1",
@@ -39,7 +39,7 @@
     "cleans": "rm -rf lib"
   },
   "name": "mm-vue-plugins",
-  "version": "0.5.4",
+  "version": "0.5.19",
   "main": "./lib",
   "repository": {
     "type": "git",

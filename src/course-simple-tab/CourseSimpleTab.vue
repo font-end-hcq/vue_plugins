@@ -1,7 +1,7 @@
 <template>
 <section class='mm-course-tab'>
   <div style="width: 100%;overflow:scroll;-webkit-overflow-scrolling:touch;">
-    <tab defaultColor='#333' activeColor='#333' :line-width=2 active-color='#fc378c' v-model="index">
+    <tab defaultColor='#333' activeColor='#DC2832' :line-width=2  v-model="index">
       <tab-item :disabled='!item' class="vux-center"  v-for="(item, index) in course" :key="index">{{item.name}}</tab-item>
     </tab>
   </div>
