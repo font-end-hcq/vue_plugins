@@ -24,7 +24,6 @@ module.exports = {
             loader: 'vue-loader'
         }, {
             test: /\.js$/,
-            // loader: 'babel-loader',
             loader: 'happypack/loader?id=happybabel'
         },{
             test: /\.(css|scss)$/,

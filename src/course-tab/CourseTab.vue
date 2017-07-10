@@ -8,12 +8,20 @@
     <swiper v-model="index" :show-dots="false" id='my-swiper'>
         <swiper-item v-for="(item, index) in swiperList" :key="index">
             <div class="tab-swiper vux-center">
-                <mm-course-list v-if='item.message' v-for='it in item.message' :message='it' :key='it' @click='toMain' :to='"course_detl?courseId="+it._id' />
-                <load-more v-if='!item.message'></load-more>
-                <div v-else-if='!item.count' class='nomessage'>
-                    <img src="//xbinstitute.oss-cn-hangzhou.aliyuncs.com/shield/image/plugin-pic/none.png" alt="">
-                    <span>这里什么都没有，去别的地方看看吧~</span>
-                </div>
+                <scroller :height='scrollsHeight' lock-x @on-scroll-bottom="onScrollBottom" ref="scrollerBottom" :scroll-bottom-offst="200">
+                    <div class="box2">
+                        <mm-course-list v-if='item.message' v-for='it in item.message' :message='it' :key='it' @click='toMain' :to='"course_detl?courseId="+it._id' />
+
+                        <load-more tip="loading" v-if='!item.message'></load-more>
+                        <div v-else-if='!item.count' class='nomessage'>
+                            <img src="https://cdn.xueyuan.xiaobao100.com/shield/image/plugin-pic/none.png" alt="">
+                            <span>这里什么都没有，去别的地方看看吧~</span>
+                        </div>
+                        <div class="weui-loadmore weui-loadmore_line" v-else-if='item.message&&item.message.length===item.count'>
+                            <!-- <span class="weui-loadmore__tips">暂无数据</span> -->
+                        </div>
+                    </div>
+                </scroller>
             </div>
         </swiper-item>
     </swiper>
@@ -33,7 +41,8 @@ import {
     TabItem,
     Swiper,
     SwiperItem,
-    LoadMore
+    LoadMore,
+    Scroller
 } from 'vux';
 
 
@@ -54,6 +63,9 @@ export default {
             pageCount: 10,
             courses: [],
             si: null,
+            bottomCount: 20,
+            onFetching: false,
+            scrollsHeight:(window.innerHeight - window.innerWidth*0.26)+'px',
         }
     },
     components: {
@@ -63,10 +75,19 @@ export default {
         SwiperItem,
         MmCourseList,
         LoadMore,
+        Scroller
     },
     methods: {
-        toMain(id=1){
-          alert(0)
+        onScrollBottom() {
+            if (!this.onFetching) {
+                this.onFetching = true;
+                this.$refs.scrollerBottom[this.index].reset()
+                this.listFunc(this.index)
+                this.onFetching = false
+            }
+        },
+        toMain(id = 1) {
+            alert(0)
             location.pathname = `course_detl?courseId=${id}`;
         },
         selectType(ind) {
@@ -95,7 +116,6 @@ export default {
                 body: os(body)
             }
             return new Promise((resolve, reject) => {
-                //http://localhost:6060
                 const requestHead = this.requestHead || '';
                 fetch(`${requestHead}/api/course/all`, canshu).then(resp => resp.json()).then(re => {
                     resolve(re.data);
@@ -110,24 +130,27 @@ export default {
             const {
                 page = 0, count = 0
             } = this.courses[val];
-            if ((page - 1) * this.pageCount > count) {
-                return;
-            }
-
-            let sl = this.swiperList[val];
-            this.getList(val, this.courses[val].page).then(data => {
-                let message = [];
-                if (data.count) {
-                    message = data.list;
+                if ((page - 1) * this.pageCount > count) {
+                    return;
                 }
 
-                sl.count = data.count;
-                sl.page = this.courses[val].page + 1;
-                const t = [].push.apply(sl.message || [], data.list)
-                sl.message = sl.message || data.list;
-            }, () => sl.message = {}).then(() => {
-                this.$set(this.swiperList, val, this.swiperList[val])
-            })
+                let sl = this.swiperList[val];
+
+                this.getList(val, this.courses[val].page).then(data => {
+                    let message = [];
+                    if (data.count) {
+                        message = data.list;
+                    }
+
+                    sl.count = data.count;
+                    sl.page = this.courses[val].page + 1;
+                    const t = [].push.apply(sl.message || [], data.list)
+                    sl.message = sl.message || data.list;
+                }, () => sl.message = {}).then(() => {
+                    this.$set(this.swiperList, val, this.swiperList[val]);
+                    this.$refs.scrollerBottom[this.index].reset()
+                })
+
         },
     },
 
@@ -136,12 +159,12 @@ export default {
     mounted() {
 
         this.setWidth();
-        document.getElementById('my-swiper').addEventListener('touchend', () => {
-            const scroll = window.screen.height + document.querySelectorAll('#my-swiper .vux-swiper-item')[this.index].scrollTop - document.querySelectorAll('#my-swiper .vux-swiper-item')[this.index].scrollHeight;
-            if (scroll >= -100) {
-                this.listFunc(this.index);
-            }
-        })
+        // document.getElementById('my-swiper').addEventListener('touchend', () => {
+        //     const scroll = window.screen.height + document.querySelectorAll('#my-swiper .vux-swiper-item')[this.index].scrollTop - document.querySelectorAll('#my-swiper .vux-swiper-item')[this.index].scrollHeight;
+        //     if (scroll >= -100) {
+        //         this.listFunc(this.index);
+        //     }
+        // })
     },
     created() {
         let {

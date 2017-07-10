@@ -35,6 +35,7 @@ export default {
   methods: {
     rate(star) {
       if(!this.result){
+        this.$emit('update:use',star);
         this.star = star;
       }
     },

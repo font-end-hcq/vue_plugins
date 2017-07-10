@@ -49,6 +49,8 @@ this.confirm = Object.assign({},this.confirm,{
 ```
 <mm-rate-star starts='5' >project-name</mm-rate-star>
 <mm-rate-star result='3'>项目名称</mm-rate-star>
+
+<mm-rate-star @update:use='e=>ss(e)'>项目名称</mm-rate-star>//0.5.38-add
 ```
 - starts 打分中用,默认为5个星星
 - result 显示分数

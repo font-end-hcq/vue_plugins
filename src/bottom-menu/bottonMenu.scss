@@ -1,6 +1,4 @@
-@import '../default.scss'; // @function pxToVw($px) {
-//      @return $px/750*100*2vw;
-// }
+@import '../default.scss';
 
 body {
     margin: 0;
@@ -15,7 +13,6 @@ body {
     background-color: #fff;
     height: 50px;
     align-items: center;
-    // box-shadow: 0 1px 5px 2px #ddd;
     z-index: 999;
     @include border_s($top:1px);
     position: fixed;
@@ -34,6 +31,8 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
+        height: 100%;
+        line-height: normal;
 
         span {
             color: #858c96;

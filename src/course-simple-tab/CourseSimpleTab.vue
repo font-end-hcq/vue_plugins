@@ -8,7 +8,7 @@
   <swiper v-model="index" :show-dots="false" id='my-swiper'>
     <swiper-item v-for="(item, index) in swiperList" :key="index">
       <div class="tab-swiper vux-center">
-        <mm-course-list v-if='item.message' v-for='it in item.message' :message='it' :key='it'/>
+        <mm-course-list v-if='item.message' v-for='it in item.message' :pingjia='pingjia'  :message='it' :key='it' :to='"course_detl?courseId="+it._id' />
         <load-more v-if='!item.message'></load-more>
         <div v-else-if='!item.count' class='nomessage'>
           <img src="//xbinstitute.oss-cn-hangzhou.aliyuncs.com/shield/image/plugin-pic/none.png" alt="">
@@ -31,7 +31,6 @@ import {
 
 
 import MmCourseList from '../course-lists'
-import os from 'object-serialize'
 import 'whatwg-fetch'
 
 export default {
@@ -47,6 +46,7 @@ export default {
       }],
       pageCount: 10,
       courses: [],
+      pingjia:false,
     }
   },
   components: {
@@ -58,32 +58,27 @@ export default {
     LoadMore,
   },
   methods: {
-    getList(ind = 0, pageNum = 1) {
-      const type = this.courses[ind]['data'];
-      let body = {
-        pageNum,
-        pageCount: this.pageCount,
-      }
-      if (type) {
-        Object.assign(body, {
-          [type]: this.courses[ind][type],
-        })
-      }
-
+    getList(over) {
       let canshu = {
-        method: "post",
+        credentials: 'include',
+        method:'post',
         headers: {
           "Accept": "application/json",
-          "Content-Type": "application/x-www-form-urlencoded"
+          "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: os(body)
+        body:`over=${over}`,
       }
       return new Promise((resolve, reject) => {
-        //http://localhost:6060
-        const requestHead = this.requestHead || '';
-        fetch(`${requestHead}/api/course/all`, canshu).then(resp => resp.json()).then(re => {
-          resolve(re.data);
-          this.courses[ind].page = pageNum;
+        fetch(`/api/user/course`, canshu)
+        // .then(re=console.log(re)).catch(()=>console.log(9))
+        .then(resp => resp.json()).then(({data={}}) => {
+          const {list=[]} = data;
+          if(list.length){
+              resolve(data);
+          }else{
+              reject();
+          }
+          // this.courses[ind].page = pageNum;
         }).catch(()=>{
           reject();
         })
@@ -97,37 +92,29 @@ export default {
         return;
       }
       let sl = this.swiperList[val];
-      this.getList(val, this.courses[val].page).then(data => {
+      this.getList(val).then(data => {
         let message = [];
-        if (data.count) {
-          message = data.list;
-        }
-
-        sl.count = data.count;
-        sl.page = this.courses[val].page + 1;
-        const t = [].push.apply(sl.message || [], data.list)
-        sl.message = sl.message || data.list;
+        // console.log(data)
+        message = data.list;
+        // const t = [].push.apply(sl.message || [], data)
+        // sl.message = sl.message || data;
+        sl.message = message;
+        sl.count = message.length;
+        this.pingjia = !!val;
+        // console.log(1,message)
       },()=>{
-          sl.message = [{
-            title:'203期 节日活动狙击式招生节日活动狙击式招生节日活动狙击式招生节日活动狙击式招生节日活动狙击式招生节日活动狙击式招生节日活动狙击式招生节日活动狙击式招生',
-            category:'营销影响',
-            buy_count:100,
-            // score:10.0,
-            // scoreType:'pingjia',
-            scoreType:'yipingjia',
-            next:this.$route.path + 10+'/',
-            cover_240x140:'',
-          }]
+          sl.message = [];
+          sl.count = 0;
       }).then(()=>{
           this.$set(this.swiperList, val, this.swiperList[val]);
       })
     },
   },
 
-  props: ['tags', 'pageCounts', 'requestHead'],
+  // props: ['tags', 'pageCounts', 'requestHead'],
 
   mounted() {
-    this.pageCount = +this.pageCounts || 10;
+    // this.pageCount = +this.pageCounts || 10;
   },
   created() {
     this.swiperList = this.course;

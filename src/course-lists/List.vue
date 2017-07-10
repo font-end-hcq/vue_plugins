@@ -1,18 +1,21 @@
 <template>
-<section class='mm-course-list' v-if='message' @click='toNext'>
+<section class='mm-course-list' v-if='message'>
+  <a href="javascript:;"  @click='toNext'></a>
   <div>
     <img :src="message.cover_240x140" onerror="javascript:this.src='https://cdn.xueyuan.xiaobao100.com/shield/image/plugin-pic/default.png';" >
     <dl>
       <dt style='WebkitBoxOrient:vertical' v-if='message.title'>{{message.title}}</dt>
       <dd>
-        <span v-if='message.category'>{{message.category}} | {{message.buy_count||0}}人已{{pingjia?"学习":"报名"}}</span>
+        <span v-if='message.category'>{{message.category}}
+           <!-- | {{message.buy_count||0}}人已{{pingjia?"学习":"报名"}} -->
+         </span>
         <object v-if='!pingjia'>
           <span v-if='message.score'>
           评分 {{message.score.toFixed(1)}}
           </span>
         </object>
-        <object v-if='pingjia' @click='next'>
-            <label class='pingjia' v-if='!pingjia.done'>评价</label>
+        <object v-if='pingjia'>
+            <label @click='next' class='pingjia' v-if='!message.pingjia'>评价</label>
             <span v-else>已评价</span>
         </object>
       </dd>
@@ -25,20 +28,10 @@
 
 export default {
   name: 'mm-course-list',
-  props: ['message','to'],
-  data(){
-    return{
-        pingjia:false,
-    }
-  },
-  created(){
-      const {pingjia} = this.message;
-      this.pingjia = pingjia;
-
-  },
+  props: ['message','to','pingjia'],
   methods:{
     next(){
-      location.hash=this.message.next;
+        location.hash = `#/buy/${this.message._id}`;
     },
     toNext(){
       if(this.to){

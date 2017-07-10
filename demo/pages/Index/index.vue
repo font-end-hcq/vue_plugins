@@ -3,16 +3,20 @@
     <!-- <mm-top-back color='#fff' backcolor='blue' bgcolor='red'>首页</mm-top-back> -->
 
     <!-- <mm-main-menu></mm-main-menu> -->
-      <!-- <mm-course-simple-tab  pageCounts='10'/> -->
-    <!-- <mm-course-tab :tags='tag'  pageCounts='3' requestHead='http://localhost:6060'/> -->
+      <!-- <mm-course-simple-tab :data='data'  pageCounts='10'/> -->
+      <!-- <mm-course-simple-tab :message='data' /> -->
+
+    <mm-course-tab :tags='tag'  pageCounts='10'/>
 
     <!-- <mm-course-list :message='message'></mm-course-list> -->
     <!-- <mm-course-list :message='message'></mm-course-list> -->
     <!-- <mm-save-dialog :time='9999' v-on:result='result'/> -->
     <!-- <mm-bottom-menu type='3'/> -->
+    <!-- <mm-bottom-menu type='2'/> -->
+
     <!-- <a href="javascript:;" @click='rr'>111</a> -->
-    <mm-rate-star starts='5' >课程评分</mm-rate-star>
-    <mm-rate-star result='3'>课程评分</mm-rate-star>
+    <!-- <mm-rate-star starts='5' @update:use='e=>ss(e)'>课程评分</mm-rate-star> -->
+    <!-- <mm-rate-star result='3'>课程评分</mm-rate-star> -->
     <!-- <mm-confirm-x v-on:next='aa' v-on:close='aa'
     :message='confirm.message'
     :closeText='"放弃支付"'
@@ -26,6 +30,7 @@
 <script>
 export default {
   methods:{
+    ss(e){console.log(e)},
     aa(){
         this.confirm = Object.assign({},this.confirm,{
           show:false
@@ -59,6 +64,7 @@ export default {
           }
         },
         tag: JSON.parse(localStorage.tags||'{}'),
+        data:[{},{}],
     }
   },
   watch(){
