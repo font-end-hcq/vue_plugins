@@ -42,6 +42,7 @@ export default {
   },
   mounted(){
     this.star = this.result || 0;
+    // sessionStorage.preIndex = 1;
   }
 }
 </script>

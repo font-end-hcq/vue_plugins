@@ -1,7 +1,4 @@
 @import '../default.scss';
-@function pxToVw($px) {
-     @return $px/750*100*2vw;
-}
 
 .mm-course-tab {
     position: fixed;
@@ -64,6 +61,7 @@
 
     .vux-tab-item {
         font-size: 12px !important;
+        white-space: nowrap;
     }
 
     .vux-tab-selected {
@@ -173,6 +171,9 @@
                 margin: 0 15px 15px 0;
                 border-radius: 5%;
                 @include border_s(1,1,1,1);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
 
                 &:before {
                     border-color: #282828;
@@ -200,6 +201,10 @@
     line-height: 1.6em;
     font-size: 14px;
     text-align: center;
+}
+
+.weui-loadmore_line .weui-loadmore__tips {
+    background-color: #f5f6f8 !important;
 }
 @supports(font-size:1vw) {
     .mm-course-tab {

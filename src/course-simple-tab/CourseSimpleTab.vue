@@ -2,7 +2,7 @@
 <section class='mm-course-tab'>
   <div style="width: 100%;overflow:scroll;-webkit-overflow-scrolling:touch;">
     <tab defaultColor='#333' activeColor='#DC2832' :line-width=2  v-model="index">
-      <tab-item :disabled='!item' class="vux-center"  v-for="(item, index) in course" :key="index">{{item.name}}</tab-item>
+      <tab-item :disabled='!item' class="vux-center"  v-for="(item, index) in course" :key="index" :selected='index==preIndex'>{{item.name}}</tab-item>
     </tab>
   </div>
   <swiper v-model="index" :show-dots="false" id='my-swiper'>
@@ -47,6 +47,7 @@ export default {
       pageCount: 10,
       courses: [],
       pingjia:false,
+      preIndex:sessionStorage.preIndex||0,
     }
   },
   components: {
@@ -111,10 +112,8 @@ export default {
     },
   },
 
-  // props: ['tags', 'pageCounts', 'requestHead'],
-
-  mounted() {
-    // this.pageCount = +this.pageCounts || 10;
+  destroyed() {
+    // sessionStorage.preIndex = 0;
   },
   created() {
     this.swiperList = this.course;
@@ -125,6 +124,7 @@ export default {
   watch: {
     index: function(val) {
       this.listFunc(val);
+      sessionStorage.preIndex = val;
       const div = document.querySelector('.mm-course-tab >div');
       let left = div.scrollLeft;
       const to = document.body.scrollWidth * 0.24 * (val - 1);

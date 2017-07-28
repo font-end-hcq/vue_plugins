@@ -2,6 +2,7 @@
   "dependencies": {
     "extract-text-webpack-plugin": "^2.1.0",
     "happypack": "^4.0.0-beta.1",
+    "mm-vue-plugins": "^0.5.61",
     "vue": "^2.3.4",
     "vue-loader": "^12.2.1",
     "vue-router": "^2.6.0",
@@ -39,7 +40,7 @@
     "cleans": "rm -rf lib"
   },
   "name": "mm-vue-plugins",
-  "version": "0.5.45",
+  "version": "0.5.70",
   "main": "./lib",
   "repository": {
     "type": "git",

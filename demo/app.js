@@ -17,7 +17,6 @@ Vue.use(CourseTab)
 // Vue.use(CourseTab)
 // Vue.use(CourseTab)
 
-
 const routes = [
     {
         path: '*',

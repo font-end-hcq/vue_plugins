@@ -7,7 +7,6 @@
       <dt style='WebkitBoxOrient:vertical' v-if='message.title'>{{message.title}}</dt>
       <dd>
         <span v-if='message.category'>{{message.category}}
-           <!-- | {{message.buy_count||0}}人已{{pingjia?"学习":"报名"}} -->
          </span>
         <object v-if='!pingjia'>
           <span v-if='message.score'>
@@ -15,7 +14,7 @@
           </span>
         </object>
         <object v-if='pingjia'>
-            <label @click='next' class='pingjia' v-if='!message.pingjia'>评价</label>
+          <label @click='next' class='pingjia' v-if='!message.pingjia'>评价</label>
             <span v-else>已评价</span>
         </object>
       </dd>
@@ -31,7 +30,7 @@ export default {
   props: ['message','to','pingjia'],
   methods:{
     next(){
-        location.hash = `#/buy/${this.message._id}`;
+        location.hash = `#/buy/${this.message.order_id}`;
     },
     toNext(){
       if(this.to){
