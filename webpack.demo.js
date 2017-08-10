@@ -37,13 +37,14 @@ module.exports = {
     // devtool:'hidden-source-map',
     watch:true,
     plugins: [
-      new HappyPack({
-       id: 'happybabel',
-       loaders: ['babel-loader'],
-       threadPool: happyThreadPool,
-       cache: true,
-       verbose: true
-     }),
+        new webpack.optimize.ModuleConcatenationPlugin(),
+        new HappyPack({
+         id: 'happybabel',
+         loaders: ['babel-loader'],
+         threadPool: happyThreadPool,
+         cache: true,
+         verbose: true
+       }),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: '"development"'

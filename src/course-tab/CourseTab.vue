@@ -8,7 +8,7 @@
     <swiper v-model="index" :show-dots="false" id='my-swiper' :min-moving-distance='minMovingDistance'>
         <swiper-item v-for="(item, index) in swiperList" :key="index">
             <div class="tab-swiper vux-center">
-                <scroller :height='platform!=="Win32"?"auto":scrollsHeight' lock-x :lock-y='lock' @on-scroll-bottom="onScrollBottom" @on-scroll='onScroll' ref="scrollerBottom" :scroll-bottom-offst="200">
+                <scroller :height='platform==="Win32"?"auto":scrollsHeight' lock-x :lock-y='lock' @on-scroll-bottom="onScrollBottom" @on-scroll='onScroll' ref="scrollerBottom" :scroll-bottom-offst="200">
                     <div>
                         <mm-course-list v-if='item.message' v-for='it in item.message' :message='it' :key='it' :to='"course_detl?courseId="+it._id' />
                         <load-more tip="loading" v-if='!item.message'></load-more>
@@ -146,7 +146,6 @@ export default {
 
 
             return new Promise((resolve, reject) => {
-
                 const requestHead = this.requestHead || '';
                 fetch(`${requestHead}/api/course/all`, canshu).then(resp => resp.json()).then(re => {
                     resolve(re.data);
@@ -180,6 +179,10 @@ export default {
                     this.$set(this.swiperList, val, this.swiperList[val]);
                     this.$refs.scrollerBottom[this.index].reset();
                     this.onFetching = false
+                }).then(()=>{
+                    if(this.platform==="Win32"){
+                      this.onScrollBottom();
+                    }
                 })
 
         },

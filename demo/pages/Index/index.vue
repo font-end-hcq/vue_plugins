@@ -4,9 +4,9 @@
 
     <!-- <mm-main-menu></mm-main-menu> -->
       <!-- <mm-course-simple-tab :data='data'  pageCounts='10'/> -->
-      <!-- <mm-course-simple-tab :message='data' /> -->
+      <mm-course-simple-tab :message='data' />
 
-    <mm-course-tab :tags='tag'  pageCounts='10' :min-moving-distance='50'/>
+    <!-- <mm-course-tab :tags='tag'  pageCounts='10' :min-moving-distance='50'/> -->
 
     <!-- <mm-course-list :message='message'></mm-course-list> -->
     <!-- <mm-course-list :message='message'></mm-course-list> -->
@@ -67,8 +67,8 @@ export default {
         data:[{},{}],
     }
   },
-  watch(){
-
-  }
+  // watch(){
+  //
+  // }
 }
 </script>

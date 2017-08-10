@@ -14,7 +14,7 @@ $border: 1px solid #ddd;
         border: $border;
         border-width: $top $right $bottom $left;
         width: 200%;
-        height: 200%;
+        height: 199%;
         transform: scale(.5);
         box-sizing: border-box;
         transform-origin: 0 0;
@@ -30,13 +30,29 @@ body {
     padding-top: 10px;
     position: relative;
 
+    .over {
+        &:after {
+            content: '';
+            position: absolute;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            top: 0;
+            background: {
+                image: url("./over.png");
+                repeat: no-repeat;
+                size: cover;
+            }
+        }
+    }
+
     > a {
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
-        z-index: 2;
+        z-index: 3;
     }
 
     > div {
@@ -44,7 +60,11 @@ body {
         margin-left: 15px;
         padding-bottom: 10px;
         padding-right: 15px;
-        @include border_s($bottom:1px);
+        border-bottom: 1px solid #ccc;
+        @media screen and(max-width: 420px) {
+             @include border_s($bottom:1px);
+            border-bottom: 0;
+        }
     }
 
     img {
@@ -63,6 +83,7 @@ body {
         padding-left: 10px;
         line-height: normal;
         flex: 1;
+        z-index: 2;
 
         dt {
             color: $color_title;
@@ -76,36 +97,39 @@ body {
         dd {
             -webkit-margin-start: 0;
             font-size: 10px;
-            color: #999;
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+    }
 
-            span {
-                display: flex;
-                align-items: center;
-            }
+    object {
+        z-index: 9;
+        position: absolute;
+        right: 20px;
+        bottom: 10px;
 
-            object {
-                z-index: 9;
-                position: relative;
-            }
+        span {
+            display: flex;
+            align-items: center;
+            color: #999;
+            font-size: 12px;
+        }
 
-            label {
-                font-size: 10px;
-                padding: 3px 0;
-                border: 1px solid;
-                border-radius: 3px;
-                width: 50px;
-                display: inline-block;
-                text-align: center;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+        label {
+            font-size: 10px;
+            padding: 3px 0;
+            border: 1px solid;
+            border-radius: 3px;
+            width: 50px;
+            display: inline-block;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-                &.pingjia {
-                    color: #f95c25;
-                }
+            &.pingjia {
+                color: #f95c25;
             }
         }
     }
@@ -121,6 +145,14 @@ body {
 @supports(font-size:1vw) {
     .mm-course-list {
         padding-top: pxToVw(10);
+
+        .over {
+            &:after {
+                right: pxToVw(20);
+                width: pxToVw(80);
+                height: pxToVw(80);
+            }
+        }
 
         > div {
             margin-left: pxToVw(15);
@@ -150,6 +182,22 @@ body {
                     border-radius: pxToVw(3);
                     width: pxToVw(50);
                 }
+            }
+        }
+
+        object {
+            right: pxToVw(20);
+            bottom: pxToVw(10);
+
+            span {
+                font-size: pxToVw(12);
+            }
+
+            label {
+                font-size: pxToVw(10);
+                padding: pxToVw(3) 0;
+                border-radius: pxToVw(3);
+                width: pxToVw(50);
             }
         }
     }
