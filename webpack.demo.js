@@ -36,6 +36,13 @@ module.exports = {
     // },
     // devtool:'hidden-source-map',
     watch:true,
+    devServer:{
+        proxy: {
+            "/api": {
+                target: "http://localhost:6060",
+            }
+        }
+    },
     plugins: [
         new webpack.optimize.ModuleConcatenationPlugin(),
         new HappyPack({

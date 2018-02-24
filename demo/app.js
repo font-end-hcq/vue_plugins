@@ -15,7 +15,7 @@ import {MainMenu,CourseLists,BottomMenu,CourseTab,SaveDialog,CourseSimpleTab,Rat
 
 // Vue.use(CourseTab)
 // Vue.use(CourseLists)
-Vue.use(CourseSimpleTab)
+Vue.use(CourseTab)
 
 const routes = [
     {

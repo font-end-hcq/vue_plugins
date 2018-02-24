@@ -5,8 +5,9 @@
     <img :src="message.cover_240x140" onerror="javascript:this.src='https://cdn.xueyuan.xiaobao100.com/shield/image/plugin-pic/default.png';" >
     <dl>
       <dt style='WebkitBoxOrient:vertical' v-if='message.title'>{{message.title}}</dt>
-      <dd>
-        <span>{{message.category}}</span>
+      <dd class='data'>
+        <label v-if='message.type==="VIP课程"||message.show_study_times'>{{message.ting_ke_ci_shu}}次学习</label>
+        <span>{{message.category||'&nbsp;'}}</span>
         <!-- <object v-if='!pingjia'>
           <span v-if='message.score'>
           评分 {{message.score.toFixed(1)}}

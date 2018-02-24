@@ -44,11 +44,10 @@ import {
     Scroller
 } from 'vux'
 
-
 import MmCourseList from '../course-lists'
 import os from 'object-serialize'
 import 'whatwg-fetch'
-
+import 'babel-polyfill'
 export default {
     name: 'mm-course-tab',
     data() {
@@ -100,7 +99,6 @@ export default {
         getList(ind = 0, pageNum = 1) {
             const type = this.courses[ind]['data'];
             this.pageCount = +this.pageCounts || 10;
-
             let body = {
                 pageNum,
                 pageCount: this.pageCount,
@@ -143,7 +141,6 @@ export default {
                 },
                 body: os(body)
             }
-
 
             return new Promise((resolve, reject) => {
                 const requestHead = this.requestHead || '';
@@ -226,7 +223,6 @@ export default {
                 data: 'type'
             })
         }
-
         for (let name of category) {
             mycourse.push({
                 name,

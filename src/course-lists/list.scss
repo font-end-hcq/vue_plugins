@@ -1,7 +1,7 @@
 $color_title: #333;
 $border: 1px solid #ddd;
 @function pxToVw($px) {
-     @return $px/750*100*2vw;
+    @return $px/750*100*2vw;
 }
 @mixin border_s($top:0, $right:0, $bottom:0, $left:0) {
     position: relative;
@@ -62,7 +62,7 @@ body {
         padding-right: 15px;
         border-bottom: 1px solid #ccc;
         @media screen and(max-width: 420px) {
-             @include border_s($bottom:1px);
+            @include border_s($bottom:1px);
             border-bottom: 0;
         }
     }
@@ -100,6 +100,15 @@ body {
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+            &.data {
+                align-items: left;
+                flex-direction: column;
+
+                label {
+                    font-size: 8px;
+                }
+            }
         }
     }
 
@@ -175,6 +184,12 @@ body {
 
             dd {
                 font-size: pxToVw(10);
+
+                &.data {
+                    label {
+                        font-size: pxToVw(8);
+                    }
+                }
 
                 label {
                     font-size: pxToVw(10);
