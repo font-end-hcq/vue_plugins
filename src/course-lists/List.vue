@@ -6,7 +6,7 @@
     <dl>
       <dt style='WebkitBoxOrient:vertical' v-if='message.title'>{{message.title}}</dt>
       <dd class='data'>
-        <label v-if='message.type==="VIP课程"||message.show_study_times'>{{message.ting_ke_ci_shu}}次学习</label>
+        <label v-if='message.show_study_times'>{{message.ting_ke_ci_shu}}次学习</label>
         <span>{{message.category||'&nbsp;'}}</span>
         <!-- <object v-if='!pingjia'>
           <span v-if='message.score'>
